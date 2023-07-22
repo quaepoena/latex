@@ -1,0 +1,408 @@
+% Compiled with lualatex.
+\documentclass[a4paper,12pt,twoside]{article}
+
+% TODO: Use polyglossia for Japanese, etc.
+% TODO: Fill this document with examples of trees, figures, etc.
+% TODO: Create your own examples.
+% TODO: Include example with metrix and lineno.
+% TODO: Include examples for all imported packages.
+% TODO: Fix warnings.
+% TODO: Remove lines with %%%%%%%%%%%%%%%
+% TODO: Can fancyhdr give titles based upon language?
+% TODO: Are these necessary? If yes, why?
+
+% \setlength{\headheight}{14.5pt}
+% \addtolength{\topmargin}{-2.5pt}
+
+% TODO: Put this on Github.
+
+%%%%%%%%%%%%%%%%%%%% General %%%%%%%%%%%%%%%%%%%%
+
+\usepackage{polyglossia}% https://www.ctan.org/pkg/polyglossia
+
+% https://9to5science.com/lineno-package-in-latex-causes-warning-message
+\usepackage{metrix}% https://ctan.org/pkg/metrix
+\usepackage{lineno}% https://ctan.org/pkg/lineno
+
+% https://tex.stackexchange.com/a/5095
+\usepackage{csquotes}% https://ctan.org/pkg/csquotes, recommended from the above link
+
+\usepackage[style=authoryear,sorting=nyt,eprint=false,isbn=false]{biblatex}% https://ctan.org/pkg/biblatex
+\bibliography{refs}
+\renewcommand{\postnotedelim}{\addcolon\space}
+
+% Strip the language field from the bibliography.
+% https://tex.stackexchange.com/a/401026
+\AtEveryBibitem{\clearlist{language}}
+
+% Make a colon (and space) the separator between *title and *subtitle.
+% https://tex.stackexchange.com/a/574295
+\renewcommand*{\subtitlepunct}{\addcolon\space}
+
+% Prevent "p." from being displayed in citations with postnotes.
+% https://tex.stackexchange.com/a/53055
+\DeclareFieldFormat{postnote}{#1}
+\DeclareFieldFormat{multipostnote}{#1}
+
+% customize page layout
+\usepackage{geometry}% https://ctan.org/pkg/geometry
+
+% various header/footer stylings
+\usepackage{fancyhdr}% https://ctan.org/pkg/fancyhdr
+\pagestyle{fancy}
+
+\fancyhf{}
+\fancyhead[ER]{\thisauthor}
+\fancyhead[OL]{\thistitle}
+\fancyhead[EL,OR]{\thepage}
+
+\fancypagestyle{toc}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{TABLE OF CONTENTS}}
+}
+
+\fancypagestyle{lof}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{LIST OF FIGURES}}
+}
+
+\fancypagestyle{lot}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{LIST OF TABLES}}
+}
+
+\fancypagestyle{bib}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{BIBLIOGRAPHY}}
+}
+
+
+
+\setlength{\headheight}{14.5pt}
+\addtolength{\topmargin}{-2.5pt}
+
+% http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc/lualatex-doc.pdf
+\usepackage{fontspec}% https://ctan.org/pkg/fontspec
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
+\newfontface\sanskrit{Samyak-Devanagari.ttf}
+
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
+
+% https://tex.stackexchange.com/a/172742
+
+% TODO: Should this be language specific?
+% This doesn't appear to be language-specific, cf.
+% LING4181 assignment and
+% https://tex.stackexchange.com/a/355056
+% \appto\captionsnorwegian{\renewcommand\Itemautorefname{~#1\null{(#1)\null}}}
+\def\sectionautorefname~#1\null{§ #1\null}%
+\def\subsectionautorefname~#1\null{§ #1\null}%
+\def\subsubsectionautorefname~#1\null{§ #1\null}%
+\def\Itemautorefname~#1\null{(#1)\null}%
+
+% mathematical symbols
+\usepackage{amsmath}% https://ctan.org/pkg/amsmath
+% various symbols including semantics brackets
+\usepackage{stmaryrd}% https://ctan.org/pkg/stmaryrd
+
+% https://latex-tutorial.com/tutorials/figures/
+% https://latex-tutorial.com/subfigure-latex/
+% https://latex-tutorial.com/figure-placement-in-text/
+% https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_3)%3A_Figures%2C_Subfigures_and_Tables
+\usepackage{subcaption}% https://ctan.org/pkg/subcaption
+
+% TODO: Do you want borders around all figures?
+% Borders around all figures.
+% https://en.m.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+% \usepackage{float}
+% \floatstyle{boxed}
+% \restylefloat{figure}
+
+\usepackage{graphicx}% https://ctan.org/pkg/graphicx
+
+% syntactic trees
+\usepackage{forest}% https://ctan.org/pkg/forest
+
+% Align trees vertically. Without this fix, semantics brackets around a tree would be
+% twice as large as the tree itself.
+% https://tex.stackexchange.com/a/309587
+% "nice empty nodes" comes from the forest manual, §4.1.
+% https://ctan.uib.no/graphics/pgf/contrib/forest/forest-doc.pdf
+\forestset{
+  /tikz/baseline=(current bounding box.center),
+  nice empty nodes/.style={
+    for tree={calign=fixed edge angles},
+    delay={where content={}{shape=coordinate,
+        for current and siblings={anchor=north}}{}}
+  },
+}
+
+\usepackage[nottoc]{tocbibind}% https://ctan.org/pkg/tocbibind
+
+% Various notes on gb4e.
+% https://tex.stackexchange.com/questions/364163/incompatibility-between-siunitx-and-gb4e/364179#364179
+% https://tex.stackexchange.com/questions/325621/gb4e-package-causing-capacity-errors/325635#325635
+% https://tex.stackexchange.com/questions/121416/putting-an-underscore-in-a-label
+% https://outde.xyz/2020-07-07/latex-pet-peeves.html
+\makeatletter
+\def\new@fontshape{}
+\makeatother
+\usepackage{gb4e}% https://ctan.org/pkg/gb4e
+\noautomath
+
+% improved glosses for use with gb4e
+% recommended by: https://amunn.github.io/assets/latex/latex-guide.pdf
+\usepackage{cgloss}% https://staticweb.hum.uu.nl/medewerkers/alexis.dimitriadis/latex/
+
+\usepackage{outlines}% https://ctan.org/pkg/outlines
+\usepackage{enumitem}% https://ctan.org/pkg/enumitem
+\setlist[enumerate,1]{label=\Roman*.}
+\setlist[enumerate,2]{label=\Alph*.}
+\setlist[enumerate,3]{label=\roman*.}
+\setlist[enumerate,4]{label=\alph*.}
+
+% https://www1.essex.ac.uk/linguistics/external/clmt/latex4ling/semantics/
+\newcommand{\setof}[1]{\ensuremath{\left \{ #1 \right \}}}
+\newcommand{\tuple}[1]{\ensuremath{\left \langle #1 \right \rangle }}
+\newcommand{\sem}[2][]{\ensuremath{\llbracket \text{#2} \rrbracket^{#1}}}
+\newcommand{\semtype}[2][]{\ensuremath{\llbracket \text{#2} \rrbracket_{\tuple{#1}}}}
+
+\newcommand{\treetab}[1]{\begin{tabular}{c}#1\end{tabular}}
+\newcommand{\predmod}[3]{[\ensuremath{\lambda}#1[#2](#1)=1 and [#3](#1)=1]}
+\newcommand{\predmodforest}[3]{{[}\ensuremath{\lambda}#1{[}#2{]}(#1){=}1 and \\{[}#3{]}(#1){=}1]}
+
+\newcommand{\mybar}[1]{\ensuremath{\bar{\text{#1}}}}
+
+% A simple solution to avoid repeatedly defining the author and title in
+% conjunction with fancyhdr and \maketitle.
+% https://stackoverflow.com/a/6670453
+\newcommand{\thistitle}{\textsc{Linguistics Paper}}
+\newcommand{\thisauthor}{\textsc{Skaffen-Amtiskaw}}
+
+\setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
+
+\tracinglostchars=3
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\tableofcontents
+\thispagestyle{toc}
+\newpage
+
+\listoffigures
+\thispagestyle{lof}
+\newpage
+
+\listoftables
+\thispagestyle{lot}
+\newpage
+
+\title{\thistitle}
+\author{\thisauthor}
+% \date{} % uncomment to add a specific date
+
+\maketitle
+\thispagestyle{plain}
+\pagenumbering{arabic}
+
+\section{Overview}
+
+In this brief overview of things useful for linguists, we see basic biblatex
+functionality in \autoref{sec:biblatex} , some symbols used in
+\autoref{sec:semantics}, phonology examples in \autoref{sec:phonology},
+including both Japanese in \autoref{ssec:phonology-japanese} and a table with
+Old English diphthongs in \autoref{ssec:phonology-oldenglish}, a figure showing
+an LFG \textit{f}-structure, and some Latin glosses.
+
+\section{Biblatex functionality}\label{sec:biblatex}
+
+A bare citation command: \autocite{burgess-plunkett-2013-1}. A citation command
+for use in the flow of text: As \textcite{burgess-plunkett-2013-1} said \dots~.
+
+\section{Semantics}\label{sec:semantics}
+
+\autoref{ex:works-denotation} shows a little bit of semantics/mathematical
+notation:\footcite[15]{heim-kratzer-1998}
+
+\begin{exe}
+  \ex\label{ex:works-denotation}
+
+  %% make the example number be at the top of the table
+  % https://tex.stackexchange.com/a/5025
+  \leavevmode\vadjust{\vspace{-\baselineskip}}
+
+  \begin{tabular}[c]{l l}
+    $\llbracket$ \textbf{works} $\rrbracket$ = f : & D $\shortrightarrow$ \{0, 1\} \\
+                                                   & For all x $\in$ D, f(x) iff x works.  \\
+  \end{tabular}
+
+\end{exe}
+
+\section{AUCTeX Testing}
+\label{sec:auctex-testing}
+
+\begin{itemize}
+\item
+\end{itemize}
+
+\textbf{foo}
+\textit{bar}
+\emph{baz?}
+\textbf{sans}
+
+{}
+
+
+\section{More Testing}
+\label{sec:foo-bar-baz}
+
+
+
+\section{Phonology}\label{sec:phonology}
+\subsection{Japanese}\label{ssec:phonology-japanese}
+
+% https://en.wikipedia.org/wiki/Japanese_phonology
+/b/ > bilabial fricative [β]: /abareru/ > [aβaɾeɾɯ] \textit{abareru} 暴れる ``to behave violently''
+
+
+\subsection{Japanese}\label{ssec:phonology-oldenglish}
+
+% <Multi_key> <backslash> <at> <i> <b>	: "̯"	U032f	# COMBINING INVERTED BREVE BELOW -- ??
+% <Multi_key> <colon> <plus>  	      	: "ː"	U02D0		# MODIFIER LETTER TRIANGULAR COLON
+% <Multi_key> <a> <h>			: "ɑ"	U0251		# LATIN SMALL LETTER ALPHA
+
+Old English diphthongs, as seen in \hyperref[tab:oe-diphthongs]{the table below}.
+
+% https://latex-tutorial.com/tables-in-latex/
+\begin{table}
+  \caption{Old English Diphthongs}
+  \label{tab:oe-diphthongs}
+
+  \begin{tabular}{|c|c|c|}
+
+    \hline
+    \textbf{First element} & \textbf{Short (monomoraic)} & \textbf{Long (bimoraic)} \\
+    \hline
+    \textbf{Close} & iy̯ & iːy̯ \\
+    \hline
+    \textbf{Mid} & eo̯ & eːo̯ \\
+    \hline
+    \textbf{Open} & æɑ̯ & æːɑ̯ \\
+    \hline
+
+  \end{tabular}
+
+\end{table}
+
+
+\section{Syntax}\label{sec:syntax}
+
+\autoref{fig:lfg} shows us an example from LFG.
+
+\begin{figure}
+  \caption{LFG example}
+  \label{fig:lfg}
+  \includegraphics{images/lfg.png}
+\end{figure}
+
+Now we have \hyperref[ex:mary-smiles]{a syntax tree} made with \hyperref{https://www.ctan.org/pkg/forest}{}{}{forest} and \hyperref[ex:mary-smiles-with-brackets]{the same tree with semantics brackets around it}.
+
+\begin{minipage}{0.3\textwidth}
+\begin{exe}
+
+  \ex\label{ex:mary-smiles}
+  \leavevmode\vadjust{\vspace{-\baselineskip}}
+
+  \begin{forest}
+    [S [NP [N [Mary]]] [VP [V [smiles]]]]
+  \end{forest}
+
+\end{exe}
+\end{minipage}
+\begin{minipage}{0.3\textwidth}
+\begin{exe}
+
+  \ex\label{ex:mary-smiles-with-brackets}
+  \leavevmode\vadjust{\vspace{-\baselineskip}}
+
+  $\left\llbracket
+  \begin{forest}
+    [S [NP [N [Mary]]] [VP [V [smiles]]]]
+  \end{forest}
+  \right\rrbracket$
+
+\end{exe}
+\end{minipage}
+
+\section{Glosses}
+
+Finally, some glosses.
+
+\begin{exe}
+
+  \ex\label{ex:lat-mir-pluper}
+  \gll sē-v-erā-tis \\
+  sow-PFV-PST-2PL \\
+  \trans ``you all had sown''
+
+  \ex\label{ex:lat-mir-fut-per}
+  \gll sē-v-eri-tis \\
+  sow-PFV-FUT-2PL \\
+  \trans ``you all will have sown''
+
+\end{exe}
+
+% https://ctan.uib.no/macros/latex/contrib/gb4e/gb4e-doc.pdf
+\begin{exe}% sets up the top-level example environment
+
+  \ex\label{ex:here} Here is one. % example with running number
+  \ex[*]{Here another is.}% judged ex. with running number
+  \ex Here are some with judgements.
+  \begin{xlist}% first embedding (alphabetical numbering)
+    \ex[]{A grammatical sentence am I.}
+    \ex[*]{An ungrammatical sentence is you.}
+    \ex[??]{A dubious sentence is she.}
+    \ex % just the number
+    \begin{xlist}% second embedding (roman numbering)
+      \ex[**]{Need one a second embedding?}
+      \ex[\%]{sometime.}
+    \end{xlist}% end second embedding
+    \ex Dare to judge me!
+  \end{xlist}% end first embedding
+  \ex This concludes our demonstration.
+
+\end{exe}% end example environment
+
+\newpage
+
+\printbibliography[
+  heading=bibintoc,
+  title=Bibliography,
+]
+\thispagestyle{bib}
+
+% \printbibliography[
+%   heading=subbibintoc,
+%   type=article,
+%   title={Articles only}
+% ]
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
