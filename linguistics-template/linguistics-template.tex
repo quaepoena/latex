@@ -94,8 +94,6 @@
 \setmonofont{FreeMono}
 \newfontface\sanskrit{Samyak-Devanagari.ttf}
 
-\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
-
 % https://tex.stackexchange.com/a/172742
 
 % TODO: Should this be language specific?
@@ -189,6 +187,9 @@
 \setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
 
 \tracinglostchars=3
+
+% TODO: Test this placement of hyperref with gb4e.
+\usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
 
 \begin{document}
 
