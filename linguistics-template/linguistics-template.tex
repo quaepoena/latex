@@ -139,21 +139,6 @@
 % syntactic trees
 \usepackage{forest}% https://ctan.org/pkg/forest
 
-% TODO: Move this and other not-likely-to-be-used-again code to another file.
-% Align trees vertically. Without this fix, semantics brackets around a tree would be
-% twice as large as the tree itself.
-% https://tex.stackexchange.com/a/309587
-% "nice empty nodes" comes from the forest manual, §4.1.
-% https://ctan.uib.no/graphics/pgf/contrib/forest/forest-doc.pdf
-\forestset{
-  /tikz/baseline=(current bounding box.center),
-  nice empty nodes/.style={
-    for tree={calign=fixed edge angles},
-    delay={where content={}{shape=coordinate,
-        for current and siblings={anchor=north}}{}}
-  },
-}
-
 \usepackage[nottoc]{tocbibind}% https://ctan.org/pkg/tocbibind
 
 % Various notes on gb4e.

@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt,twoside]{article}
+
+\usepackage{polyglossia}% https://www.ctan.org/pkg/polyglossia
+\setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
+% \setdefaultlanguage[variant=nynorsk]{norwegian}
+
+\usepackage[style=authoryear,sorting=nyt,eprint=false,isbn=false]{biblatex}% https://ctan.org/pkg/biblatex
+
+\bibliography{mwe}
+
+% \usepackage[colorlinks=true, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
+
+% http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc/lualatex-doc.pdf
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{fontspec}% https://ctan.org/pkg/fontspec
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
+
+\usepackage{forest}% https://ctan.org/pkg/forest
+
+% Align trees vertically. Without this fix, semantics brackets around a tree would be
+% twice as large as the tree itself.
+% Simplified from https://tex.stackexchange.com/a/309587.
+% "nice empty nodes" comes from the forest manual, §4.1.
+\forestset{
+  /tikz/baseline=(current bounding box.center),
+  nice empty nodes/.style={
+    for tree={calign=fixed edge angles},
+    delay={where content={}{shape=coordinate,
+        for current and siblings={anchor=north}}{}}
+  },
+}
+
+\begin{document}
+
+The interesting things in this document are in the preamble. These are
+non-trivial code snippets I no longer use but don't wish to delete.
+
+\newpage
+
+\printbibliography
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
