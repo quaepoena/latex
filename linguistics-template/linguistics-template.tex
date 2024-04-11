@@ -206,6 +206,15 @@
 % TODO: Test this placement of hyperref with gb4e.
 \usepackage[colorlinks, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
 
+% Set PDF metadata.
+\hypersetup{
+  pdfinfo = {
+    Title = Linguistics Paper,
+    Author = {Skaffen-Amtiskaw},
+    Subject = Formatting linguistics papers with LaTeX,
+  }
+}
+
 % Typeset the alphabetic part of an ordinal number in superscript.
 \NewDocumentCommand{\ordabbr}{m}{%
   \textsuperscript{\underline{#1}}
