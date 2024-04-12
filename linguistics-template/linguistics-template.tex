@@ -57,43 +57,6 @@
 % customize page layout
 \usepackage{geometry}% https://ctan.org/pkg/geometry
 
-% various header/footer stylings
-\usepackage{fancyhdr}% https://ctan.org/pkg/fancyhdr
-\pagestyle{fancy}
-
-\fancyhf{}
-\fancyhead[ER]{\thisauthor}
-\fancyhead[OL]{\thistitle}
-\fancyhead[EL,OR]{\thepage}
-
-\fancypagestyle{toc}{%
-  \fancyhf{}
-  \fancyhead[RO]{\thepage}
-  \fancyhead[LE]{\thepage}
-  \fancyhead[C]{\textsl{TABLE OF CONTENTS}}
-}
-
-\fancypagestyle{lof}{%
-  \fancyhf{}
-  \fancyhead[RO]{\thepage}
-  \fancyhead[LE]{\thepage}
-  \fancyhead[C]{\textsl{LIST OF FIGURES}}
-}
-
-\fancypagestyle{lot}{%
-  \fancyhf{}
-  \fancyhead[RO]{\thepage}
-  \fancyhead[LE]{\thepage}
-  \fancyhead[C]{\textsl{LIST OF TABLES}}
-}
-
-\fancypagestyle{bib}{%
-  \fancyhf{}
-  \fancyhead[RO]{\thepage}
-  \fancyhead[LE]{\thepage}
-  \fancyhead[C]{\textsl{BIBLIOGRAPHY}}
-}
-
 % TODO: Are these necessary? If yes, why?
 \setlength{\headheight}{14.5pt}
 \addtolength{\topmargin}{-2.5pt}
@@ -138,6 +101,9 @@
 
 % Draw syntactic trees.
 \usepackage{myforest}
+
+% Stylings for the header, footer, etc.
+\usepackage{myfancyhdr}
 
 \usepackage[nottoc]{tocbibind}% https://ctan.org/pkg/tocbibind
 

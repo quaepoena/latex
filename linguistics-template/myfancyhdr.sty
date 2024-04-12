@@ -1,0 +1,62 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myfancyhdr}
+\RequirePackage{fancyhdr}% https://ctan.org/pkg/fancyhdr
+
+% Used to find the number of pages in \fancyfoot below.
+\RequirePackage{zref-totpages}% https://ctan.org/pkg/zref
+
+\pagestyle{fancy}
+
+\fancyhf{}
+% Don't display the header ruler when no header is present.
+% https://tex.stackexchange.com/a/165924
+% https://tex.stackexchange.com/a/375976
+\makeatletter
+\let\org@fancyhead\f@nch@head
+\renewcommand*{\f@nch@head}[5]{%
+  \sbox0{#2#3#4}%
+  \ifdim\wd0=\z@
+    \let\headrule\relax
+  \fi
+  \org@fancyhead{#1}{#2}{#3}{#4}{#5}%
+}
+\makeatother
+
+% Don't display the page number if the document is single-paged.
+\fancyfoot[C]{%
+  \ifnum\ztotpages=1 \else\thepage\fi
+}
+
+\fancyhead[ER]{\thisauthor}
+\fancyhead[OL]{\thistitle}
+\fancyhead[EL,OR]{\thepage}
+
+\fancypagestyle{toc}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{TABLE OF CONTENTS}}
+}
+
+\fancypagestyle{lof}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{LIST OF FIGURES}}
+}
+
+\fancypagestyle{lot}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{LIST OF TABLES}}
+}
+
+\fancypagestyle{bib}{%
+  \fancyhf{}
+  \fancyhead[RO]{\thepage}
+  \fancyhead[LE]{\thepage}
+  \fancyhead[C]{\textsl{BIBLIOGRAPHY}}
+}
+
+\endinput
