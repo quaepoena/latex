@@ -37,17 +37,16 @@
   }
 }
 
-% TODO: Reformat, move down.
-\renewcommand{\postnotedelim}{\addcolon\space}
-
 % Strip the language field from the bibliography.
 % https://tex.stackexchange.com/a/401026
 \AtEveryBibitem{\clearlist{language}}
 \AtEveryBibitem{\clearfield{month}}
 
-% Make a colon (and space) the separator between *title and *subtitle.
+% Separate the title from the subtitle with a colon and space.
 % https://tex.stackexchange.com/a/574295
-\renewcommand*{\subtitlepunct}{\addcolon\space}
+\RenewDocumentCommand{\subtitlepunct}{}{\addcolon\space}
+% Separate the note from the postnote with a colon and space.
+\RenewDocumentCommand{\postnotedelim}{}{\addcolon\space}
 
 % Prevent "p." from being displayed in citations with postnotes.
 % https://tex.stackexchange.com/a/53055
