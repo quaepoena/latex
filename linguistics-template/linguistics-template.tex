@@ -111,12 +111,11 @@
 \setlist[enumerate,3]{label=\roman*.}
 \setlist[enumerate,4]{label=\alph*.}
 
-% TODO: Format command names consistently.
 % A simple solution to avoid repeatedly defining the author and title in
 % conjunction with fancyhdr and \maketitle.
 % https://stackoverflow.com/a/6670453
-\newcommand{\thistitle}{\textsc{Linguistics Paper}}
-\newcommand{\thisauthor}{\textsc{Skaffen-Amtiskaw}}
+\NewDocumentCommand{\thistitle}{}{\textsc{Linguistics Paper}}
+\NewDocumentCommand{\thisauthor}{}{\textsc{Skaffen-Amtiskaw}}
 
 \setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
 
