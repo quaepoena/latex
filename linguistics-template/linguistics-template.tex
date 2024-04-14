@@ -60,17 +60,6 @@
 \setmonofont{FreeMono}
 \newfontface\sanskrit{Samyak-Devanagari.ttf}
 
-% https://tex.stackexchange.com/a/172742
-
-% TODO: Should this be language specific?
-% This doesn't appear to be language-specific, cf.
-% IE assignment and https://tex.stackexchange.com/a/355056
-% \appto\captionsnorwegian{\renewcommand\Itemautorefname{~#1\null{(#1)\null}}}
-\def\sectionautorefname~#1\null{§ #1\null}%
-\def\subsectionautorefname~#1\null{§ #1\null}%
-\def\subsubsectionautorefname~#1\null{§ #1\null}%
-\def\Itemautorefname~#1\null{(#1)\null}%
-
 % Mathematical symbols.
 \usepackage{amsmath}% https://ctan.org/pkg/amsmath
 % Various symbols including semantics brackets.
@@ -145,6 +134,19 @@
     Subject = Formatting linguistics papers with LaTeX
   }
 }
+
+\makeatletter
+\RenewDocumentCommand{\sectionautorefname}{}{%
+  §~\@gobble
+}
+\RenewDocumentCommand{\subsectionautorefname}{}{%
+  §~\@gobble
+}
+\RenewDocumentCommand{\subsubsectionautorefname}{}{%
+  §~\@gobble
+}
+\makeatother
+\def\Itemautorefname~#1\null{(#1)\null}%
 
 % Typeset the alphabetic part of an ordinal number in superscript.
 \NewDocumentCommand{\ordabbr}{m}{%
