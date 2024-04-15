@@ -132,13 +132,9 @@
 \RenewDocumentCommand{\sectionautorefname}{}{%
   §~\@gobble
 }
-\RenewDocumentCommand{\subsectionautorefname}{}{%
-  §~\@gobble
-}
-\RenewDocumentCommand{\subsubsectionautorefname}{}{%
-  §~\@gobble
-}
 \makeatother
+\RenewCommandCopy{\subsectionautorefname}{\sectionautorefname}
+\RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
 \def\Itemautorefname~#1\null{(#1)\null}%
 
 % Typeset the alphabetic part of an ordinal number in superscript.
