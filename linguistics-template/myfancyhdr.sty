@@ -4,6 +4,7 @@
 
 % Used to find the number of pages in \fancyfoot below.
 \RequirePackage{zref-totpages}% https://ctan.org/pkg/zref
+\RequirePackage[headheight=14.5pt]{geometry}
 
 \pagestyle{fancy}
 
@@ -19,7 +20,6 @@
 % https://tex.stackexchange.com/a/375976
 % https://latexref.xyz/_005cnewcommand-_0026-_005crenewcommand.html
 % xparse documentation, § 1
-
 \makeatletter
 \let\org@fancyhead\f@nch@head
 \RenewDocumentCommand{\f@nch@head}{mmmmm}{%
@@ -67,8 +67,5 @@
   \fancyhead[LE]{\thepage}
   \fancyhead[C]{\textsl{BIBLIOGRAPHY}}
 }
-
-% Fix warning from fancyhdr.
-\setlength{\headheight}{14.5pt}
 
 \endinput
