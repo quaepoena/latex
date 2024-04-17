@@ -9,11 +9,20 @@
 
 \fancyhf{}
 % Don't display the header ruler when no header is present.
+% Modified from the SE examples to use commands from xparse.
+
+% Note the starred version of \renewcommand (now deleted from this file), as
+% used by the folks on SE, forbids the arguments from containing multiple
+% paragraphs. The same is accomplished with \RenewDocumentCommand by not using
+% `+` in the argument specification.
 % https://tex.stackexchange.com/a/165924
 % https://tex.stackexchange.com/a/375976
+% https://latexref.xyz/_005cnewcommand-_0026-_005crenewcommand.html
+% xparse documentation, § 1
+
 \makeatletter
 \let\org@fancyhead\f@nch@head
-\renewcommand*{\f@nch@head}[5]{%
+\RenewDocumentCommand{\f@nch@head}{mmmmm}{%
   \sbox0{#2#3#4}%
   \ifdim\wd0=\z@
     \let\headrule\relax
