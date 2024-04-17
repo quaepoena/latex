@@ -31,14 +31,17 @@
 }
 \makeatother
 
-% Don't display the page number if the document is single-paged.
-\fancyfoot[C]{%
-  \ifnum\ztotpages=1 \else\thepage\fi
-}
-
 \fancyhead[ER]{\thisauthor}
 \fancyhead[OL]{\thistitle}
 \fancyhead[EL,OR]{\thepage}
+
+% Don't display the page number if the document is single-paged.
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{%
+    \ifnum\ztotpages=1 \else\thepage\fi
+  }
+}
 
 \fancypagestyle{toc}{%
   \fancyhf{}
