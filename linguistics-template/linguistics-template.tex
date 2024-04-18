@@ -149,10 +149,10 @@
 }
 \makeatother
 
-% TODO: Fix this to be called like so: \ordabbr{3rd}. Use xstring.
-% Typeset the alphabetic part of an ordinal number in superscript.
-\NewDocumentCommand{\ordabbr}{m}{%
-  \textsuperscript{\underline{#1}}
+% Raise the alphabetical part of an ordinal number.
+\usepackage{xstring}
+\NewDocumentCommand{\ordinal}{m}{%
+  \StrGobbleRight{#1}{2}\textsuperscript{\StrRight{#1}{2}}%
 }
 
 \begin{document}
