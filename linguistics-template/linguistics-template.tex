@@ -138,17 +138,6 @@
 \RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
 \def\Itemautorefname~#1\null{(#1)\null}%
 
-% TODO: Incorporate this into \enquote.
-\makeatletter
-\NewDocumentCommand{\foo}{m}{%
-  \@ifnextchar,{%
-    \enquote{#1,}\@gobble%
-  }{%
-    \enquote{#1}%
-  }
-}
-\makeatother
-
 % TODO: Move this to a personal .sty.
 % Raise the alphabetical part of an ordinal number.
 \usepackage{xstring}
