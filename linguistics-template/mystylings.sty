@@ -1,0 +1,10 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mystylings}
+\RequirePackage{xstring}
+
+% Raise the alphabetical part of an ordinal number.
+\NewDocumentCommand{\ordinal}{m}{%
+  \StrGobbleRight{#1}{2}\textsuperscript{\StrRight{#1}{2}}%
+}
+
+\endinput

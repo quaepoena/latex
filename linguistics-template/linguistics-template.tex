@@ -118,6 +118,8 @@
 % The Not So Short Introduction to LaTeX, § 2.8.1.
 \tracinglostchars=3
 
+\usepackage{mystylings}
+
 \usepackage[colorlinks, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
 
 % Set PDF metadata.
@@ -137,13 +139,6 @@
 \RenewCommandCopy{\subsectionautorefname}{\sectionautorefname}
 \RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
 \def\Itemautorefname~#1\null{(#1)\null}%
-
-% TODO: Move this to a personal .sty.
-% Raise the alphabetical part of an ordinal number.
-\usepackage{xstring}
-\NewDocumentCommand{\ordinal}{m}{%
-  \StrGobbleRight{#1}{2}\textsuperscript{\StrRight{#1}{2}}%
-}
 
 \begin{document}
 
