@@ -22,38 +22,7 @@
 \usepackage{csquotes}% https://ctan.org/pkg/csquotes
 \usepackage{booktabs}% https://ctan.org/pkg/booktabs
 
-% TODO: Make biblatex stylings into a .sty file.
-\usepackage[style=authoryear,sorting=nyt,eprint=false,isbn=false]{biblatex}% https://ctan.org/pkg/biblatex
-% ~/texmf/bibtex/bib
-\bibliography{refs}
-
-% Don't print ISBN if DOI is defined.
-% https://tex.stackexchange.com/a/76542
-% § 4.5.3 in the biblatex documentation.
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \step[fieldsource=doi,final]
-      \step[fieldset=isbn,null]
-    }
-  }
-}
-
-% Strip the language field from the bibliography.
-% https://tex.stackexchange.com/a/401026
-\AtEveryBibitem{\clearlist{language}}
-\AtEveryBibitem{\clearfield{month}}
-
-% Separate the title from the subtitle with a colon and space.
-% https://tex.stackexchange.com/a/574295
-\RenewDocumentCommand{\subtitlepunct}{}{\addcolon\space}
-% Separate the note from the postnote with a colon and space.
-\RenewDocumentCommand{\postnotedelim}{}{\addcolon\space}
-
-% Prevent "p." from being displayed in citations with postnotes.
-% https://tex.stackexchange.com/a/53055
-\DeclareFieldFormat{postnote}{#1}
-\DeclareFieldFormat{multipostnote}{#1}
+\usepackage{mybiblatex}
 
 % http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc-de/lualatex-doc-DE.pdf
 \defaultfontfeatures{Ligatures=TeX}
