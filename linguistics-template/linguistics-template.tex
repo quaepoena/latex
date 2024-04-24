@@ -25,13 +25,6 @@
 
 \usepackage{mybiblatex}
 
-% http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc-de/lualatex-doc-DE.pdf
-\defaultfontfeatures{Ligatures=TeX}
-\setmainfont{FreeSerif}
-\setsansfont{FreeSans}
-\setmonofont{FreeMono}
-\newfontface\sanskrit{Samyak-Devanagari.ttf}
-
 % Elevate missing characters in a font from warning to error.
 % The Not So Short Introduction to LaTeX, § 2.8.1.
 \tracinglostchars=3
@@ -108,6 +101,11 @@
 \RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
 \def\Itemautorefname~#1\null{(#1)\null}%
 
+% http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc-de/lualatex-doc-DE.pdf
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{FreeSerif}
+\setsansfont{FreeSans}
+\setmonofont{FreeMono}
 % TODO: Add a Sanskrit example.
 % \newfontface\sanskrit{Samyak-Devanagari.ttf}
 
