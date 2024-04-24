@@ -4,7 +4,6 @@
 % Check for outdated packages and bad practices.
 \usepackage[l2tabu, orthodox]{nag}% https://ctan.org/pkg/nag
 
-% TODO: Use polyglossia for Japanese, etc.
 % TODO: Fill this document with examples of trees, figures, etc.
 % TODO: Create your own examples.
 % TODO: Include example with metrix and lineno.
@@ -118,6 +117,7 @@
 \setotherlanguage[variant=ancient]{greek}
 \setotherlanguage[variant=classic]{latin}
 
+\newfontfamily\japanesefont{TakaoMincho}
 \begin{document}
 
 \pagenumbering{roman}
@@ -141,6 +141,29 @@
 \maketitle
 \thispagestyle{plain}
 \pagenumbering{arabic}
+
+\section{Polyglossia testing}
+
+\begin{quote}
+    \begin{greek}
+        μῆνιν ἄειδε θεὰ Πηληϊάδεω Ἀχιλῆος οὐλομένην, ἣ μυρί' Ἀχαιοῖς ἄλγε' ἔθηκε,
+        πολλὰς δ' ἰφθίμους ψυχὰς Ἄϊδι προί̈ αψεν ἡρώων, αὐτοὺς δὲ ἑλώρια τεῦχε
+        κύνεσσιν οἰωνοῖσί τε πᾶσι, Διὸς δ' ἐτελείετο βουλή, ἐξ οὗ δὴ τὰ πρῶτα
+        διαστήτην ἐρίσαντε Ἀτρεί̈ δης τε ἄναξ ἀνδρῶν καὶ δῖος Ἀχιλλεύς.
+    \end{greek}
+\end{quote}
+
+\begin{quote}
+    \begin{latin}
+        \lipsum[1]
+    \end{latin}
+\end{quote}
+
+\begin{quote}
+    \begin{japanese}
+        暴れる
+    \end{japanese}
+\end{quote}
 
 \section{Overview}
 
@@ -181,7 +204,7 @@ notation:\footcite[15]{heim-kratzer-1998}
 \subsection{Japanese}\label{ssec:phonology-japanese}
 
 % https://en.wikipedia.org/wiki/Japanese_phonology
-/b/ > bilabial fricative [β]: /abareru/ > [aβaɾeɾɯ] \textit{abareru} 暴れる ``to behave violently''
+/b/ > bilabial fricative [β]: /abareru/ > [aβaɾeɾɯ] \textit{abareru} \textjapanese{暴れる} ``to behave violently''
 
 
 \subsection{Japanese}\label{ssec:phonology-oldenglish}
