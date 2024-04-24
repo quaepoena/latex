@@ -31,6 +31,10 @@
 \setmonofont{FreeMono}
 \newfontface\sanskrit{Samyak-Devanagari.ttf}
 
+% Elevate missing characters in a font from warning to error.
+% The Not So Short Introduction to LaTeX, § 2.8.1.
+\tracinglostchars=3
+
 % Mathematical symbols.
 \usepackage{amsmath}% https://ctan.org/pkg/amsmath
 % Various symbols including semantics brackets.
@@ -82,10 +86,6 @@
 \NewDocumentCommand{\thisauthor}{}{\textsc{Skaffen-Amtiskaw}}
 
 \setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
-
-% Elevate missing characters in a font from warning to error.
-% The Not So Short Introduction to LaTeX, § 2.8.1.
-\tracinglostchars=3
 
 \usepackage{mystylings}
 
