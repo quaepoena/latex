@@ -14,7 +14,6 @@
 % TODO: Display use of Norvegia.
 
 \usepackage[verbose]{polyglossia}% https://www.ctan.org/pkg/polyglossia
-\setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
 
 % Load lineno before csquotes.
 % https://tex.stackexchange.com/a/447159
@@ -108,6 +107,15 @@
 \RenewCommandCopy{\subsectionautorefname}{\sectionautorefname}
 \RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
 \def\Itemautorefname~#1\null{(#1)\null}%
+
+% From the polyglossia manual, § 2.1: Note In general, it is advisable to
+% activate the languages after all packages have been loaded. This is
+% particularly important if you use right-to-left scripts or languages with
+% babel shorthands.
+\setdefaultlanguage[variant=american,ordinalmonthday=false]{english}
+\setotherlanguage{japanese}
+\setotherlanguage[variant=ancient]{greek}
+\setotherlanguage[variant=classic]{latin}
 
 \begin{document}
 
