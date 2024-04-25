@@ -2,10 +2,10 @@
 \ProvidesPackage{myforest}
 \RequirePackage{forest}% https://ctan.org/pkg/forest
 
-% Align trees vertically. Without this fix, semantics brackets around a tree would be
-% twice as large as the tree itself.
-% Simplified from https://tex.stackexchange.com/a/309587.
-% "nice empty nodes" comes from the forest manual, §4.1.
+% Align trees vertically. Without this fix, semantics brackets around a tree
+% would be twice as large as the tree itself. Simplified from
+% https://tex.stackexchange.com/a/309587. "nice empty nodes" comes from the
+% forest manual, §4.1.
 \forestset{
   /tikz/baseline=(current bounding box.center),
   nice empty nodes/.style={
