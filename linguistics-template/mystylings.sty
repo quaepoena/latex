@@ -2,6 +2,12 @@
 \ProvidesPackage{mystylings}
 \RequirePackage{xstring}
 
+% A simple solution to avoid repeatedly defining the author and title in
+% conjunction with fancyhdr and \maketitle.
+% https://stackoverflow.com/a/6670453
+\NewDocumentCommand{\thistitle}{}{\textsc{Linguistics Paper}}
+\NewDocumentCommand{\thisauthor}{}{\textsc{Skaffen-Amtiskaw}}
+
 % Raise the alphabetical part of an ordinal number.
 \NewDocumentCommand{\ordinal}{m}{%
   \StrGobbleRight{#1}{2}\textsuperscript{\StrRight{#1}{2}}%
