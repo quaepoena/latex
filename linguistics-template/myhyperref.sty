@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{myhyperref}
+\RequirePackage[colorlinks, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
+
+% Set PDF metadata.
+\hypersetup{
+  pdfinfo = {
+    Title = Linguistics Paper,
+    Author = {Skaffen-Amtiskaw},
+    Subject = Formatting linguistics papers with LaTeX
+  }
+}
+
+\makeatletter
+\RenewDocumentCommand{\sectionautorefname}{}{%
+  §~\@gobble
+}
+\makeatother
+\RenewCommandCopy{\subsectionautorefname}{\sectionautorefname}
+\RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
+\def\Itemautorefname~#1\null{(#1)\null}%
+
+\endinput

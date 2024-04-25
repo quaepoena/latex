@@ -70,25 +70,7 @@
 \setlist[enumerate,3]{label=\roman*.}
 \setlist[enumerate,4]{label=\alph*.}
 
-\usepackage[colorlinks, citecolor=blue, linkcolor=blue]{hyperref}% https://ctan.org/pkg/hyperref
-
-% Set PDF metadata.
-\hypersetup{
-  pdfinfo = {
-    Title = Linguistics Paper,
-    Author = {Skaffen-Amtiskaw},
-    Subject = Formatting linguistics papers with LaTeX
-  }
-}
-
-\makeatletter
-\RenewDocumentCommand{\sectionautorefname}{}{%
-  §~\@gobble
-}
-\makeatother
-\RenewCommandCopy{\subsectionautorefname}{\sectionautorefname}
-\RenewCommandCopy{\subsubsectionautorefname}{\sectionautorefname}
-\def\Itemautorefname~#1\null{(#1)\null}%
+\usepackage{myhyperref}
 
 % TODO: Consolidate font commands (here?).
 % http://dante.ctan.org/tex-archive/info/luatex/lualatex-doc-de/lualatex-doc-DE.pdf
